@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 17:39:07 by axbal             #+#    #+#             */
-/*   Updated: 2018/03/29 17:41:02 by axbal            ###   ########.fr       */
+/*   Updated: 2018/03/30 16:30:45 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,23 @@ t_map		*init_map(void)
 	return (map);
 }
 
+t_color		*init_colors(void)
+{
+	t_color	*colors;
+
+	if (!(colors = (t_color *)malloc(sizeof(t_color) * 2)))
+		return (NULL);
+	colors[0].r = 0;
+	colors[0].g = 0;
+	colors[0].b = 0;
+	colors[0].alpha = 0;
+	colors[1].r = 255;
+	colors[1].g = 255;
+	colors[1].b = 255;
+	colors[1].alpha = 0;
+	return (colors);
+}
+
 t_data		*init_data(void)
 {
 	t_data	*data;
@@ -45,6 +62,7 @@ t_data		*init_data(void)
 		ft_error(1);
 	data->player = init_player();
 	data->map = init_map();
+	data->colors = init_colors();
 	WIN_W = 960;
 	WIN_H = 600;
 	MLX = mlx_init();
