@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 19:00:10 by axbal             #+#    #+#             */
-/*   Updated: 2018/03/30 16:28:03 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/01 13:59:50 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # define WIN_H data->win_h
 # define PLAYER data->player
 # define MAP data->map
+# define COLORS data->colors
+# define IMG data->img_ptr
+# define IMG_STR data->img_str
 # define BPP data->bpp
 # define S_L data->s_l
 # define ENDIAN data->endian
@@ -79,5 +82,8 @@ int					close_window(void);
 t_data				*init_data(void);
 char				**get_map(void);
 void				put_pixel_to_image(t_dot d, t_data *dt, char *i, t_color c);
+void				refresh_expose(t_data *data);
+void				raycast(t_data *data);
+int					key_redirect(int key, t_data *data);
 
 #endif
