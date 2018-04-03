@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 17:39:07 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/01 15:08:20 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/03 11:25:30 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ t_data		*init_data(void)
 	data->colors = init_colors();
 	WIN_W = 960;
 	WIN_H = 600;
+	SPEED = 0.1;
+	M_X = 0;
 	MLX = mlx_init();
 	WIN = mlx_new_window(MLX, WIN_W, WIN_H, "wolf3d");
 	IMG = mlx_new_image(MLX, WIN_W, WIN_H);

@@ -6,7 +6,7 @@
 #    By: axbal <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/23 14:54:13 by axbal             #+#    #+#              #
-#    Updated: 2018/04/01 14:01:33 by axbal            ###   ########.fr        #
+#    Updated: 2018/04/03 10:14:15 by axbal            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS = main.c		\
 	   map.c		\
 	   put_pixel.c	\
 	   bind_func.c	\
+	   colors.c		\
 
 OBJDIR = obj
 OBJS = $(SRCS:.c=.o)
