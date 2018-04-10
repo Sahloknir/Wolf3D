@@ -6,74 +6,69 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 13:56:21 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/09 14:11:35 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/10 11:55:26 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
-void	turn(int mode, t_data *data)
+void	turn(int key, t_data *data)
 {
-	if (mode == 0)
-		PLAYER->angle += 0.08;
+	if (key == 2)
+		PLAYER->angle += 0.02;
 	else
-		PLAYER->angle -= 0.08;
+		PLAYER->angle -= 0.02;
 	raycast(data);
 	refresh_expose(data);
 }
 
-void	move(int mode, t_data *data)
+void	move(int key, t_data *data)
 {
-	if (mode == 0)
+	if (key == 13)
 	{
-		PLAYER->pos_x += cos(PLAYER->angle) * SPEED;
-		PLAYER->pos_y += sin(PLAYER->angle) * SPEED;
+		if (MAP->map[(int)(PLAYER->pos_y + sin(PLAYER->angle) * SPEED)]
+			[(int)(PLAYER->pos_x + cos(PLAYER->angle) * SPEED)] == '.')
+		{
+			PLAYER->pos_y += sin(PLAYER->angle) * SPEED;
+			PLAYER->pos_x += cos(PLAYER->angle) * SPEED;
+		}
 	}
 	else
+	{
+		if (MAP->map[(int)(PLAYER->pos_y - sin(PLAYER->angle) * SPEED)]
+			[(int)(PLAYER->pos_x - cos(PLAYER->angle) * SPEED)] == '.')
+		{
+			PLAYER->pos_y -= sin(PLAYER->angle) * SPEED;
+			PLAYER->pos_x -= cos(PLAYER->angle) * SPEED;
+		}
+	}
+	raycast(data);
+	refresh_expose(data);
+}
+
+void	strafe(int key, t_data *data)
+{
+	if (key == 12)
 	{
 		PLAYER->pos_x -= cos(PLAYER->angle) * SPEED;
-		PLAYER->pos_y -= sin(PLAYER->angle) * SPEED;
+		PLAYER->pos_y -= tan(PLAYER->angle) * SPEED;
+	}
+	if (key == 14)
+	{
+		PLAYER->pos_x += cos(PLAYER->angle) * SPEED;
+		PLAYER->pos_y += tan(PLAYER->angle) * SPEED;
 	}
 	raycast(data);
 	refresh_expose(data);
-}
-
-int		key_press(int key, t_data *data)
-{
-//	ft_putstr("press");
-	if (key == 257)
-		SPEED = 0.5;
-	return (key);
-}
-
-int		key_release(int key, t_data *data)
-{
-//	ft_putstr("release");
-	if (key == 257)
-		SPEED = 0.1;
-	return (key);
-}
-
-int		track_mouse(int x, int y, t_data *data)
-{
-	if (x > M_X)
-		turn(0, data);
-	else if (x < M_X)
-		turn(1, data);
-	M_X = x;
-	return (y);
 }
 
 int		key_redirect(int key, t_data *data)
 {
-	if (key == 2)
-		turn(0, data);
-	else if (key == 0)
-		turn(1, data);
-	else if (key == 13)
-		move(0, data);
-	else if (key == 1)
-		move(1, data);
+	int		a;
+
+	a = WIN_W;
+	if (key == 53)
+		close_window();
 	ft_putnbr(key);
 	return (key);
 }

@@ -6,11 +6,19 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 14:12:16 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/09 16:08:10 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/10 12:04:41 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
+
+void	get_texture_column(t_data *data)
+{
+	if (TEX->x == TEX->img_w - 1)
+		TEX->x = 0;
+	else
+		TEX->x++;
+}
 
 void	raycast(t_data *data)
 {
@@ -39,7 +47,7 @@ void	raycast(t_data *data)
 		v_y = sin(ray);
 		while (dist < 30)
 		{
-			dist += 0.01;
+			dist += 0.001;
 			r_x = (int)(PLAYER->pos_x + v_x * dist);
 			r_y = (int)(PLAYER->pos_y + v_y * dist);
 			if (r_x < 0 || r_x > MAP->size_x || r_y < 0 || r_y >= MAP->size_y)
@@ -62,12 +70,13 @@ void	raycast(t_data *data)
 		if (roof < 0)
 			TEX->y = (-roof) * yratio;
 		d.x = x;
+		get_texture_column(data);
 		while (y < WIN_H)
 		{
 			d.y = y;
 			if (y < roof)
 				put_pixel_to_image(d, data, IMG_STR, COLORS[0]);
-			else if (y >= roof && y <= floor)
+			else if (y >= roof && y < floor)
 			{
 				c = get_pixel_from_texture(data);
 				put_pixel_to_image(d, data, IMG_STR, c);

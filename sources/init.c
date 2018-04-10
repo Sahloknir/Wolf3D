@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 17:39:07 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/09 14:16:59 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/10 12:10:23 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ t_texture	*init_texture(t_data *data)
 		return (NULL);
 	tex->x = 0;
 	tex->y = 0;
-	tex->texture = mlx_xpm_file_to_image(MLX, "textures/sol.xpm", &(tex->img_w), &(tex->img_h));
-	tex->tex_data = mlx_get_data_addr(tex->texture, &(tex->bpp), &(tex->s_l), &(tex->endian));
+	tex->texture = mlx_xpm_file_to_image(MLX, "textures/wall.xpm",
+	&(tex->img_w), &(tex->img_h));
+	tex->tex_data = mlx_get_data_addr(tex->texture, &(tex->bpp), &(tex->s_l),
+	&(tex->endian));
 	tex->bpp /= 8;
 	return (tex);
 }
@@ -72,7 +74,7 @@ t_data		*init_data(void)
 	data->player = init_player();
 	data->map = init_map();
 	data->colors = init_colors();
-	WIN_W = 960;
+	WIN_W = 900;
 	WIN_H = 600;
 	SPEED = 0.1;
 	M_X = 0;

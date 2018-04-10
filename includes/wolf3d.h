@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 19:00:10 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/09 14:31:54 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/10 11:14:11 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ void				put_pixel_to_image(t_dot d, t_data *dt, char *i, t_color c);
 void				refresh_expose(t_data *data);
 void				raycast(t_data *data);
 int					key_redirect(int key, t_data *data);
+void				turn(int key, t_data *data);
+void				move(int key, t_data *data);
 t_color				new_color(int r, int g, int b, int alpha);
 int					key_press(int key, t_data *data);
 int					key_release(int key, t_data *data);
