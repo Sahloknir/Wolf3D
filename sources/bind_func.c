@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 13:56:21 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/03 11:36:29 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/09 14:11:35 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	move(int mode, t_data *data)
 
 int		key_press(int key, t_data *data)
 {
+//	ft_putstr("press");
 	if (key == 257)
 		SPEED = 0.5;
 	return (key);
@@ -47,6 +48,7 @@ int		key_press(int key, t_data *data)
 
 int		key_release(int key, t_data *data)
 {
+//	ft_putstr("release");
 	if (key == 257)
 		SPEED = 0.1;
 	return (key);

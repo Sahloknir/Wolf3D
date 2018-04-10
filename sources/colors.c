@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 10:12:19 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/03 10:13:43 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/09 13:18:19 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ t_color		new_color(int r, int g, int b, int alpha)
 {
 	t_color		c;
 
-	c.r = r;
-	c.g = g;
-	c.b = b;
-	c.alpha = alpha;
+	c.r = (char)r;
+	c.g = (char)g;
+	c.b = (char)b;
+	c.alpha = (char)alpha;
 	return (c);
 }

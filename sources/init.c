@@ -6,11 +6,25 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 17:39:07 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/03 11:25:30 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/09 14:16:59 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
+
+t_texture	*init_texture(t_data *data)
+{
+	t_texture	*tex;
+
+	if (!(tex = (t_texture *)malloc(sizeof(t_texture) * 1)))
+		return (NULL);
+	tex->x = 0;
+	tex->y = 0;
+	tex->texture = mlx_xpm_file_to_image(MLX, "textures/sol.xpm", &(tex->img_w), &(tex->img_h));
+	tex->tex_data = mlx_get_data_addr(tex->texture, &(tex->bpp), &(tex->s_l), &(tex->endian));
+	tex->bpp /= 8;
+	return (tex);
+}
 
 t_player	*init_player(void)
 {
@@ -41,16 +55,11 @@ t_color		*init_colors(void)
 {
 	t_color	*colors;
 
-	if (!(colors = (t_color *)malloc(sizeof(t_color) * 2)))
+	if (!(colors = (t_color *)malloc(sizeof(t_color) * 3)))
 		return (NULL);
-	colors[0].r = 0;
-	colors[0].g = 0;
-	colors[0].b = 0;
-	colors[0].alpha = 0;
-	colors[1].r = 255;
-	colors[1].g = 255;
-	colors[1].b = 255;
-	colors[1].alpha = 0;
+	colors[0] = new_color(122, 160, 196, 0);
+	colors[1] = new_color(255, 255, 255, 0);
+	colors[2] = new_color(79, 51, 27, 0);
 	return (colors);
 }
 
@@ -72,5 +81,6 @@ t_data		*init_data(void)
 	IMG = mlx_new_image(MLX, WIN_W, WIN_H);
 	IMG_STR = mlx_get_data_addr(IMG, &BPP, &S_L, &ENDIAN);
 	BPP /= 8;
+	data->texture = init_texture(data);
 	return (data);
 }

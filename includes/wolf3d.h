@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 19:00:10 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/03 11:35:12 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/09 14:31:54 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define PLAYER data->player
 # define MAP data->map
 # define COLORS data->colors
+# define TEX data->texture
 # define IMG data->img_ptr
 # define IMG_STR data->img_str
 # define BPP data->bpp
@@ -42,11 +43,24 @@ typedef struct		s_dot
 
 typedef struct		s_color
 {
-	int				r;
-	int				g;
-	int				b;
-	int				alpha;
+	char			r;
+	char			g;
+	char			b;
+	char			alpha;
 }					t_color;
+
+typedef struct		s_texture
+{
+	float			x;
+	float			y;
+	int				img_w;
+	int				img_h;
+	void			*texture;
+	char			*tex_data;
+	int				bpp;
+	int				s_l;
+	int				endian;
+}					t_texture;
 
 typedef struct		s_player
 {
@@ -79,6 +93,7 @@ typedef struct		s_data
 	t_player		*player;
 	t_map			*map;
 	t_color			*colors;
+	t_texture		*texture;
 }					t_data;
 
 void				ft_error(int error);
@@ -93,5 +108,6 @@ t_color				new_color(int r, int g, int b, int alpha);
 int					key_press(int key, t_data *data);
 int					key_release(int key, t_data *data);
 int					track_mouse(int x, int y, t_data *data);
+t_color				get_pixel_from_texture(t_data *data);
 
 #endif
