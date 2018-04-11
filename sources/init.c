@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 17:39:07 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/10 12:10:23 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/11 17:55:40 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,10 @@ t_texture	*init_texture(t_data *data)
 {
 	t_texture	*tex;
 
-	if (!(tex = (t_texture *)malloc(sizeof(t_texture) * 1)))
+	if (!(tex = (t_texture *)malloc(sizeof(t_texture) * 2)))
 		return (NULL);
-	tex->x = 0;
-	tex->y = 0;
-	tex->texture = mlx_xpm_file_to_image(MLX, "textures/wall.xpm",
-	&(tex->img_w), &(tex->img_h));
-	tex->tex_data = mlx_get_data_addr(tex->texture, &(tex->bpp), &(tex->s_l),
-	&(tex->endian));
-	tex->bpp /= 8;
+	tex[0] = new_texture(data, "textures/wall2.xpm");
+	tex[1] = new_texture(data, "textures/wall.xpm");
 	return (tex);
 }
 
@@ -36,7 +31,7 @@ t_player	*init_player(void)
 		ft_error(1);
 	player->pos_x = 1;
 	player->pos_y = 1;
-	player->angle = 0;
+	player->angle = 1;
 	player->fov = 1.0472 / 2;
 	return (player);
 }

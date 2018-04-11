@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 19:00:10 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/10 11:14:11 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/11 16:33:14 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "../libft/includes/libft.h"
 # include "../mlx/mlx.h"
 
+# define STEP 0.001
 # define MLX data->mlx
 # define WIN data->win
 # define WIN_W data->win_w
@@ -34,6 +35,7 @@
 # define ENDIAN data->endian
 # define SPEED data->speed
 # define M_X data->mouse_x
+# define SIDE data->side
 
 typedef struct		s_dot
 {
@@ -90,6 +92,7 @@ typedef struct		s_data
 	int				endian;
 	float			speed;
 	int				mouse_x;
+	int				side;
 	t_player		*player;
 	t_map			*map;
 	t_color			*colors;
@@ -111,5 +114,6 @@ int					key_press(int key, t_data *data);
 int					key_release(int key, t_data *data);
 int					track_mouse(int x, int y, t_data *data);
 t_color				get_pixel_from_texture(t_data *data);
+t_texture			new_texture(t_data *data, char *path);
 
 #endif
