@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 14:12:16 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/11 17:53:20 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/12 15:56:08 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	get_texture_column(t_data *data, float dist, float v_x, float v_y)
 	float	value;
 	float	x;
 	float	y;
-	t = &(TEX[SIDE % 2]);
+	t = TEX[SIDE % 2];
 
 	x = (PLAYER->pos_x + v_x * dist);
 	y = (PLAYER->pos_y + v_y * dist);
@@ -31,22 +31,31 @@ void	get_texture_column(t_data *data, float dist, float v_x, float v_y)
 		TEX->x++;*/
 }
 
-void	check_side(t_data *data, float dist, int x, int y)
+int		check_side(t_data *data, float dist, float x, float y)
 {
 	int		prev_x;
 	int		prev_y;
 	int		c_x;
 	int		c_y;
+	int		side;
 
-	c_x = (int)(PLAYER->pos_x + x * dist);
-	c_y = (int)(PLAYER->pos_y + y * dist);
-	dist -= STEP;
-	prev_x = (int)(PLAYER->pos_x + x * dist);
-	prev_y = (int)(PLAYER->pos_y + y * dist);
+	side = 1;
+	c_x = (int)(PLAYER->pos_x + (x * dist));
+	c_y = (int)(PLAYER->pos_y + (y * dist));
+	prev_x = (int)(PLAYER->pos_x + (x * (dist - STEP)));
+	prev_y = (int)(PLAYER->pos_y + (y * (dist - STEP)));
 	if (c_y != prev_y)
-		SIDE = (prev_y < c_y ? 1 : 3);
+	{
+		ft_putstr("test1, ");
+		side = (prev_y < c_y ? 1 : 3);
+	}
 	if (c_x != prev_x)
-		SIDE = (prev_x < c_x ? 2 : 4);
+	{
+		ft_putstr("test2, ");
+		side = (prev_x < c_x ? 2 : 4);
+	}
+	printf("%i\n", side);
+	return (side);
 }
 
 void	raycast(t_data *data)
@@ -91,8 +100,8 @@ void	raycast(t_data *data)
 					break ;
 			}
 		}
-		check_side(data, dist, v_x, v_y);
-		t = &(TEX[SIDE % 2]);
+		SIDE = check_side(data, dist, v_x, v_y);
+		t = TEX[SIDE % 2];
 		roof = (float)(WIN_H / 2) - WIN_H / ((float)dist) + PLAYER->angle;
 		floor = WIN_H - roof;
 		wall = floor - roof;

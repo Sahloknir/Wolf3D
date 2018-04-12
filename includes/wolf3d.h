@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 19:00:10 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/11 16:33:14 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/11 18:20:12 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ typedef struct		s_data
 	t_player		*player;
 	t_map			*map;
 	t_color			*colors;
-	t_texture		*texture;
+	t_texture		**texture;
 }					t_data;
 
 void				ft_error(int error);
@@ -114,6 +114,6 @@ int					key_press(int key, t_data *data);
 int					key_release(int key, t_data *data);
 int					track_mouse(int x, int y, t_data *data);
 t_color				get_pixel_from_texture(t_data *data);
-t_texture			new_texture(t_data *data, char *path);
+t_texture			*new_texture(t_data *data, char *path);
 
 #endif

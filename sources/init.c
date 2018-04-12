@@ -6,17 +6,17 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 17:39:07 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/11 17:55:40 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/11 18:14:41 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
-t_texture	*init_texture(t_data *data)
+t_texture	**init_texture(t_data *data)
 {
-	t_texture	*tex;
+	t_texture	**tex;
 
-	if (!(tex = (t_texture *)malloc(sizeof(t_texture) * 2)))
+	if (!(tex = (t_texture **)malloc(sizeof(t_texture *) * 2)))
 		return (NULL);
 	tex[0] = new_texture(data, "textures/wall2.xpm");
 	tex[1] = new_texture(data, "textures/wall.xpm");
