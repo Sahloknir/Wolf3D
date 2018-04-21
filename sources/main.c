@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 19:01:42 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/10 11:47:52 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/13 17:06:15 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int		main(int argc, char **argv)
 	mlx_hook(WIN, 3, 1L << 1, key_release, data);
 //	mlx_hook(WIN, 6, 1L << 6, track_mouse, data);
 	mlx_key_hook(WIN, key_redirect, data);
+	mlx_put_image_to_window(MLX, WIN, TEX[4]->texture, 0, 0);
 	mlx_loop(MLX);
 	return (0);
 }

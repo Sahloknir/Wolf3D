@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 19:00:10 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/11 18:20:12 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/13 17:18:30 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "../libft/includes/libft.h"
 # include "../mlx/mlx.h"
 
-# define STEP 0.001
+# define STEP 0.01
 # define MLX data->mlx
 # define WIN data->win
 # define WIN_W data->win_w

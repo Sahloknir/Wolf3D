@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 17:39:07 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/11 18:14:41 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/13 17:17:17 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@ t_texture	**init_texture(t_data *data)
 {
 	t_texture	**tex;
 
-	if (!(tex = (t_texture **)malloc(sizeof(t_texture *) * 2)))
+	if (!(tex = (t_texture **)malloc(sizeof(t_texture *) * 5)))
 		return (NULL);
 	tex[0] = new_texture(data, "textures/wall2.xpm");
 	tex[1] = new_texture(data, "textures/wall.xpm");
+	tex[2] = new_texture(data, "textures/wall3.xpm");
+	tex[3] = new_texture(data, "textures/wall4.xpm");
+	tex[4] = new_texture(data, "textures/barrel.xpm");
 	return (tex);
 }
 
@@ -43,7 +46,7 @@ t_map		*init_map(void)
 	if (!(map = (t_map *)malloc(sizeof(t_map))))
 		ft_error(1);
 	map->size_x = 10;
-	map->size_y = 10;
+	map->size_y = 37;
 	map->map = get_map();
 	return (map);
 }
@@ -73,6 +76,7 @@ t_data		*init_data(void)
 	WIN_H = 600;
 	SPEED = 0.1;
 	M_X = 0;
+	SIDE = 1;
 	MLX = mlx_init();
 	WIN = mlx_new_window(MLX, WIN_W, WIN_H, "wolf3d");
 	IMG = mlx_new_image(MLX, WIN_W, WIN_H);
