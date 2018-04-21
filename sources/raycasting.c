@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 14:12:16 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/13 16:35:16 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/21 18:23:56 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,14 +107,16 @@ void	raycast(t_data *data)
 			d.y = y;
 			if (y < roof)
 				put_pixel_to_image(d, data, IMG_STR, COLORS[0]);
-			else if (y >= roof && y < floor)
+			else if (y >= roof && y < floor && dist < 30)
 			{
 				c = get_pixel_from_texture(data);
 				put_pixel_to_image(d, data, IMG_STR, c);
 				t->y += yratio;
 			}
-			else
+			else if (y >= floor)
 				put_pixel_to_image(d, data, IMG_STR, COLORS[2]);
+			else
+				put_pixel_to_image(d, data, IMG_STR, COLORS[0]);
 			y++;
 		}
 		t->x = 0;

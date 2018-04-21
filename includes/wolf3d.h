@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 19:00:10 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/13 17:18:30 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/21 17:42:21 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ typedef struct		s_data
 }					t_data;
 
 void				ft_error(int error);
+void				reset_image(t_data *data);
 int					close_window(void);
 t_data				*init_data(void);
 char				**get_map(void);

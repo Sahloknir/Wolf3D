@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 13:56:21 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/10 11:55:26 by axbal            ###   ########.fr       */
+/*   Updated: 2018/04/21 17:42:23 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	turn(int key, t_data *data)
 		PLAYER->angle += 0.02;
 	else
 		PLAYER->angle -= 0.02;
+	reset_image(data);
 	raycast(data);
 	refresh_expose(data);
 }
@@ -42,6 +43,7 @@ void	move(int key, t_data *data)
 			PLAYER->pos_x -= cos(PLAYER->angle) * SPEED;
 		}
 	}
+	reset_image(data);
 	raycast(data);
 	refresh_expose(data);
 }
@@ -58,6 +60,7 @@ void	strafe(int key, t_data *data)
 		PLAYER->pos_x += cos(PLAYER->angle) * SPEED;
 		PLAYER->pos_y += tan(PLAYER->angle) * SPEED;
 	}
+	reset_image(data);
 	raycast(data);
 	refresh_expose(data);
 }
