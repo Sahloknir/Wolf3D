@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 14:12:16 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/21 18:23:56 by axbal            ###   ########.fr       */
+/*   Updated: 2018/06/06 17:20:52 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@ void	get_texture_column(t_data *data, float dist, float v_x, float v_y)
 	value = (SIDE % 2 == 0 ? y : x);
 	value = value - floor(value);
 	t->x = (value * t->img_w);
-/*	if (TEX->x == TEX->img_w - 1)
-		TEX->x = 0;
-	else
-		TEX->x++;*/
 }
 
 void	check_side(t_data *data, float dist, float x, float y)
@@ -46,6 +42,26 @@ void	check_side(t_data *data, float dist, float x, float y)
 		SIDE = (prev_y < c_y ? 1 : 3);
 	else if (c_x != prev_x && c_y == prev_y)
 		SIDE = (prev_x < c_x ? 2 : 4);
+}
+
+void	draw_floor(t_dot d, int floor_int, t_data *data, float dist, float v_x, float v_y)
+{
+	int		lines;
+	int		gap;
+	float	current;
+	float	r_x;
+	float	r_y;
+	int		tx;
+	int		ty;
+
+	lines = WIN_H - floor_int;
+	gap = dist / lines;
+	current = dist - ((d.y - floor_int) * gap);
+	r_x = (float)(PLAYER->pos_x + v_x * current);
+	r_y = (float)(PLAYER->pos_y + v_y * current);
+	tx = (r_x - floor(r_x)) * TEX[5]->img_w;
+	ty = (r_y - floor(r_y)) * TEX[5]->img_h;
+	put_pixel_to_image(d, data, IMG_STR, get_pixel_from_texture(data, 5));
 }
 
 void	raycast(t_data *data)
@@ -109,12 +125,13 @@ void	raycast(t_data *data)
 				put_pixel_to_image(d, data, IMG_STR, COLORS[0]);
 			else if (y >= roof && y < floor && dist < 30)
 			{
-				c = get_pixel_from_texture(data);
+				c = get_pixel_from_texture(data, SIDE - 1);
 				put_pixel_to_image(d, data, IMG_STR, c);
 				t->y += yratio;
 			}
 			else if (y >= floor)
-				put_pixel_to_image(d, data, IMG_STR, COLORS[2]);
+				draw_floor(d, floor, data, dist, v_x, v_y);
+//				put_pixel_to_image(d, data, IMG_STR, COLORS[2]);
 			else
 				put_pixel_to_image(d, data, IMG_STR, COLORS[0]);
 			y++;

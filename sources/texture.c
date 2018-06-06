@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 12:19:24 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/13 16:29:42 by axbal            ###   ########.fr       */
+/*   Updated: 2018/06/06 17:20:06 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ t_texture	*new_texture(t_data *data, char *path)
 	return (t);
 }
 
-t_color		get_pixel_from_texture(t_data *data)
+t_color		get_pixel_from_texture(t_data *data, int index)
 {
 	t_color		c;
 	char		t;
 	t_texture	*tex;
-	tex = TEX[SIDE - 1];
+	tex = TEX[index];
 
 	t = tex->tex_data[((int)tex->x * tex->bpp) + ((int)tex->y * tex->s_l) + 0];
 	c.b = t;

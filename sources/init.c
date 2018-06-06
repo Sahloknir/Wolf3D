@@ -6,7 +6,7 @@
 /*   By: axbal <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 17:39:07 by axbal             #+#    #+#             */
-/*   Updated: 2018/04/13 17:17:17 by axbal            ###   ########.fr       */
+/*   Updated: 2018/06/06 16:50:35 by axbal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@ t_texture	**init_texture(t_data *data)
 {
 	t_texture	**tex;
 
-	if (!(tex = (t_texture **)malloc(sizeof(t_texture *) * 5)))
+	if (!(tex = (t_texture **)malloc(sizeof(t_texture *) * 6)))
 		return (NULL);
 	tex[0] = new_texture(data, "textures/wall2.xpm");
 	tex[1] = new_texture(data, "textures/wall.xpm");
 	tex[2] = new_texture(data, "textures/wall3.xpm");
 	tex[3] = new_texture(data, "textures/wall4.xpm");
 	tex[4] = new_texture(data, "textures/barrel.xpm");
+	tex[5] = new_texture(data, "textures/floor.xpm");
 	return (tex);
 }
 
